@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { PrismaService } from './prisma/prisma.service';
 import { CustomLogger } from './logger/logger.service';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const Logger = new CustomLogger();
@@ -16,6 +17,18 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: Logger,
   });
+
+  // Use cookie parser middleware
+  app.use(cookieParser());
+
+  // Enable CORS
+  app.enableCors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true,
+  });
+
+  // Set global prefix
+  app.setGlobalPrefix('api');
 
   // Get PrismaService instance and connect
   const prismaService = app.get(PrismaService);

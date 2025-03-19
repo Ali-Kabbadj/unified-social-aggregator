@@ -24,11 +24,10 @@ export class AuthController {
       'AuthController [youtubeCallback]',
     );
 
-    // For Postman testing, return JSON instead of redirect
-    res.json({
-      status: 'success',
-      user: req.user,
-      accessToken: req.authInfo?.accessToken,
-    });
+    // Store user ID in session or generate a JWT
+    const userId = req.user.id;
+
+    // Redirect to feed with user ID
+    res.redirect(`/api/feeds?userId=${userId}`);
   }
 }

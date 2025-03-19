@@ -7,6 +7,7 @@ import { RequestLogger } from './core/request.logger';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { LoggerModule } from './logger/logger.module';
+import { SessionMiddleware } from './core/session.middleware';
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { LoggerModule } from './logger/logger.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestLogger).forRoutes('*');
+    consumer.apply(RequestLogger, SessionMiddleware).forRoutes('*');
   }
 }

@@ -29,13 +29,18 @@
     "@nestjs/schedule": "^5.0.1",
     "@nestjs/websockets": "^11.0.11",
     "@prisma/client": "^6.5.0",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/uuid": "^10.0.0",
     "axios": "^1.8.3",
     "chalk": "^5.4.1",
+    "cookie-parser": "^1.4.7",
+    "googleapis": "^146.0.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-oauth2": "^1.8.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
