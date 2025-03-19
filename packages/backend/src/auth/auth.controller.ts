@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
@@ -17,7 +15,7 @@ export class AuthController {
 
   @Get('youtube/callback')
   @UseGuards(AuthGuard('youtube'))
-  async youtubeCallback(@Req() req, @Res() res: Response) {
+  youtubeCallback(@Req() req, @Res() res: Response) {
     this.logger.log('YouTube OAuth callback received');
     this.logger.log(
       `User email: ${req.user.email}`,
