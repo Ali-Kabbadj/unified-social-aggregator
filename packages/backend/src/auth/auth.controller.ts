@@ -27,7 +27,7 @@ export class AuthController {
     // Store user ID in session or generate a JWT
     const userId = req.user.id;
 
-    // Redirect to feed with user ID
-    res.redirect(`/api/feeds?userId=${userId}`);
+    // Remove the /api prefix
+    res.redirect(`/feeds?userId=${userId}`);
   }
 }

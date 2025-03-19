@@ -27,8 +27,8 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Set global prefix
-  app.setGlobalPrefix('api');
+  // // Set global prefix
+  // app.setGlobalPrefix('api');
 
   // Get PrismaService instance and connect
   const prismaService = app.get(PrismaService);
