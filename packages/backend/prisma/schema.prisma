@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [pgcrypto]
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String?      @unique
+  displayName  String?
+  socialLogins SocialLogin[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model SocialLogin {
+  id           String   @id @default(uuid())
+  provider     String
+  providerId   String
+  accessToken  String
+  refreshToken String?
+  expiresAt    DateTime?
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  
+  @@unique([provider, providerId])
+}

@@ -1,0 +1,34 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
+import { Logger } from '@nestjs/common';
+
+@Controller('auth')
+export class AuthController {
+  private readonly logger = new Logger(AuthController.name);
+
+  @Get('youtube')
+  @UseGuards(AuthGuard('youtube'))
+  youtubeAuth() {
+    this.logger.log('Initiating YouTube OAuth flow');
+  }
+
+  @Get('youtube/callback')
+  @UseGuards(AuthGuard('youtube'))
+  async youtubeCallback(@Req() req, @Res() res: Response) {
+    this.logger.log('YouTube OAuth callback received');
+    this.logger.log(
+      `User email: ${req.user.email}`,
+      'AuthController [youtubeCallback]',
+    );
+
+    // For Postman testing, return JSON instead of redirect
+    res.json({
+      status: 'success',
+      user: req.user,
+      accessToken: req.authInfo?.accessToken,
+    });
+  }
+}
