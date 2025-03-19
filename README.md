@@ -25,7 +25,6 @@ The goal of this project is to create a multi-platform application that consolid
 9. [Technical Challenges and Mitigation Strategies](#technical-challenges-and-mitigation-strategies)
 10. [Roadmap and Milestones](#roadmap-and-milestones)
 11. [Future Considerations](#future-considerations)
-12. [Conclusion](#conclusion)
 
 ---
 
